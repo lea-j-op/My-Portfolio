@@ -1,6 +1,6 @@
 # Leah Joseph - Portfolio Website
 
-![Portfolio Screenshot](screenshot.png)
+https://github.com/lea-j-op/My-Portfolio/
 
 ## Description
 This is my professional portfolio website showcasing my skills, education, projects, and contact information. The website features a clean, modern design with responsive layouts that work across all device sizes.
