@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leah Joseph | Portfolio</title>
+    <style>
+        /* ===== Reset and Base Styles ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9fbfc;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling for the entire page */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ===== Header Styles ===== */
+        header {
+            background: linear-gradient(135deg, #0e7c7b 0%, #44b7b5 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative SVG background for header */
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Q50,80 0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat bottom center;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        /* Main header text */
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInDown 1s ease;
+        }
+
+        /* Subheader text */
+        header p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            font-weight: 300;
+            position: relative;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        /* ===== Navigation ===== */
+        nav {
+            background: #ffffff;
+            position: sticky;
+            top: 0;
+            box-shadow: 0 4px 20px rgba(14, 124, 123, 0.15);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        /* Scrolled state for navbar */
+        nav.scrolled {
+            box-shadow: 0 2px 10px rgba(14, 124, 123, 0.2);
+        }
+
+        /* Navigation list */
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 1.2rem;
+        }
+
+        /* Navigation items */
+        nav li {
+            margin: 0 1.8rem;
+            position: relative;
+        }
+
+        /* Navigation links */
+        nav a {
+            color: #0e7c7b;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 0;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        /* Navigation link underline effect */
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #44b7b5;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== Section Styles ===== */
+        section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Section headings */
+        section h2 {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: #0e7c7b;
+            font-size: 2.5rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        /* Section heading underline decoration */
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #0e7c7b, #44b7b5);
+            border-radius: 2px;
+        }
+
+        /* ===== About Section ===== */
+        #about {
+            background: white;
+            position: relative;
+        }
+
+        /* Decorative top wave for about section */
+        #about::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Q50,0 0,100 Z" fill="%23ffffff"/></svg>') no-repeat top center;
+            background-size: cover;
+        }
+
+        /* About section paragraphs */
+        #about p {
+            max-width: 800px;
+            margin: 0 auto 1.8rem;
+            text-align: center;
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        /* ===== Education Section ===== */
+        #education {
+            background: linear-gradient(to bottom, #f8fafa 0%, #ffffff 100%);
+            position: relative;
+        }
+
+        /* Container for education items */
+        .education-container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* Individual education item card */
+        .education-item {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(14, 124, 123, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border-left: 4px solid #0e7c7b;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Education item hover effect */
+        .education-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(14, 124, 123, 0.15);
+        }
+
+        /* Subtle background gradient for education items */
+        .education-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(14, 124, 123, 0.03) 0%, rgba(68, 183, 181, 0.03) 100%);
+            z-index: -1;
+        }
+
+        /* Education item heading */
+        .education-item h3 {
+            color: #0e7c7b;
+            margin-bottom: 0.8rem;
+            font-size: 1.5rem;
+        }
+
+        /* Education item text */
+        .education-item p {
+            color: #555;
+            margin-bottom: 1rem;
+            line-height: 1.7;
+        }
+
+        /* CV download section */
+        .download-cv {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        /* CV download button */
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #0e7c7b 0%, #44b7b5 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(14, 124, 123, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* CV download button hover effect */
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(14, 124, 123, 0.4);
+        }
+
+        /* CV download button shine effect */
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        /* CV download button icon */
+        .download-btn svg {
+            margin-right: 10px;
+        }
+
+        /* ===== Projects Section ===== */
+        #projects {
+            background: white;
+            position: relative;
+        }
+
+        /* Grid layout for projects */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        /* Individual project card */
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(14, 124, 123, 0.1);
+            transition: all 0.4s ease;
+            border: none;
+            position: relative;
+        }
+
+        /* Project card hover effect */
+        .project-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(14, 124, 123, 0.2);
+        }
+
+        /* Project image/placeholder area */
+        .project-img {
+            height: 220px;
+            background: linear-gradient(135deg, #e0f2f1 0%, #b2dfdb 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0e7c7b;
+            font-size: 1.4rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Diagonal pattern for project image placeholder */
+        .project-img::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100" preserveAspectRatio="none"><rect fill="rgba(255,255,255,0.2)" width="50" height="50" x="0" y="0"></rect><rect fill="rgba(255,255,255,0.2)" width="50" height="50" x="50" y="50"></rect></svg>');
+            background-size: 20px 20px;
+            opacity: 0.3;
+        }
+
+        /* Project information area */
+        .project-info {
+            padding: 2.5rem;
+        }
+
+        /* Project title */
+        .project-info h3 {
+            margin-bottom: 1.2rem;
+            color: #0e7c7b;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Project description */
+        .project-info p {
+            color: #555;
+            margin-bottom: 1.8rem;
+            line-height: 1.7;
+        }
+
+        /* Project links container */
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Project links (GitHub, Live Demo, etc.) */
+        .project-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(135deg, #0e7c7b 0%, #44b7b5 100%);
+            color: white;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(14, 124, 123, 0.3);
+        }
+
+        /* Project links hover effect */
+        .project-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(14, 124, 123, 0.4);
+        }
+
+        /* Project link icons */
+        .project-links svg {
+            margin-right: 8px;
+        }
+
+        /* ===== Skills Section ===== */
+        #skills {
+            background: linear-gradient(to bottom, #ffffff 0%, #f8fafa 100%);
+            position: relative;
+        }
+
+        /* Container for skills */
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Individual skill badge */
+        .skill {
+            background: linear-gradient(135deg, #0e7c7b 0%, #44b7b5 100%);
+            color: white;
+            padding: 0.8rem 1.8rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            box-shadow: 0 6px 15px rgba(14, 124, 123, 0.2);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Skill badge gradient overlay */
+        .skill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 100%);
+        }
+
+        /* Skill badge hover effect */
+        .skill:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(14, 124, 123, 0.3);
+        }
+
+        /* ===== Contact Section ===== */
+        #contact {
+            background: linear-gradient(135deg, #0e7c7b 0%, #44b7b5 100%);
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative SVG background for contact section */
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Q50,80 0,100 Z" fill="rgba(255,255,255,0.1)"/></svg>') no-repeat bottom center;
+            background-size: cover;
+            opacity: 0.3;
+        }
+
+        /* Contact section heading */
+        #contact h2 {
+            color: white;
+        }
+
+        /* Contact section heading underline */
+        #contact h2::after {
+            background: white;
+        }
+
+        /* Contact section text */
+        #contact p {
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+            position: relative;
+        }
+
+        /* Contact links container */
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        /* Individual contact link */
+        .contact-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            padding: 0.8rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Contact link hover effect */
+        .contact-links a:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        /* Contact link shine effect */
+        .contact-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .contact-links a:hover::before {
+            left: 100%;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #0a5a59;
+            color: white;
+            text-align: center;
+            padding: 3rem;
+            font-weight: 300;
+            position: relative;
+        }
+
+        /* Footer top border */
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #0e7c7b, #44b7b5);
+        }
+
+        /* Footer text */
+        footer p {
+            position: relative;
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Floating animation for elements */
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            header {
+                padding: 4rem 0;
+            }
+
+            header h1 {
+                font-size: 2.5rem;
+            }
+
+            header p {
+                font-size: 1.2rem;
+            }
+
+            nav ul {
+                flex-direction: row;
+                flex-wrap: wrap;
+                padding: 0.8rem;
+            }
+
+            nav li {
+                margin: 0.5rem;
+            }
+
+            section {
+                padding: 4rem 1.5rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+                margin-bottom: 3rem;
+            }
+
+            .project-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .contact-links {
+                flex-direction: row;
+                gap: 1.5rem;
+            }
+
+            .contact-links a {
+                font-size: 1rem;
+                padding: 0.7rem 1.2rem;
+            }
+
+            .education-item {
+                padding: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav li {
+                margin: 0.3rem 0;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .contact-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Main Header Section -->
+    <header>
+        <h1>Leah Joseph</h1>
+        <p>Web Developer</p>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar">
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- About Me Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I'm a passionate and driven software developer with a strong enthusiasm for learning and building innovative solutions. My journey into tech began with a curiosity for how things work, and it has since evolved into a commitment to writing clean, efficient, and impactful code.</p>
+        <p>When I'm not coding, you'll find me exploring tech communities, working on personal projects, or expanding my knowledge in emerging development trends.</p>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <h2>Education</h2>
+        <div class="education-container">
+            <!-- Education Item 1 -->
+            <div class="education-item floating">
+                <h3>AFRICAN MANAGEMENT INSTITUTE</h3>
+                <p>Degree in Business Administration</p>
+                <p>Relevant coursework: Accounting, Management, Bookkeeping</p>
+            </div>
+            
+            <!-- Education Item 2 -->
+            <div class="education-item floating" style="animation-delay: 0.2s;">
+                <h3>PLP Academy</h3>
+                <p>Software Engineering</p>
+                <p>Currently enrolled</p>
+                <p>Skills learned: HTML, CSS, JavaScript, React, Node.js, Python</p>
+            </div>
+            
+            <!-- CV Download Button -->
+            <div class="download-cv">
+                <a href="CV.pdf" class="download-btn">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="7 10 12 15 17 10"></polyline>
+                        <line x1="12" y1="15" x2="12" y2="3"></line>
+                    </svg>
+                    Download Full CV
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>My Projects</h2>
+        <div class="project-grid">
+            <!-- Project Card (Placeholder) -->
+            <div class="project-card">
+                <div class="project-img floating">
+                    Future Projects
+                </div>
+                <div class="project-info">
+                    <h3>Future Projects</h3>
+                    <p>
+                        Currently working on exciting new projects including web applications,
+                        mobile apps, and backend systems. More projects coming soon!
+                    </p>
+                    <div class="project-links">
+                        <a href="https://github.com/lea-j-op" target="_blank" rel="noopener noreferrer">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                            </svg>
+                            View Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-container">
+            <span class="skill">HTML5</span>
+            <span class="skill">CSS3</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">Git</span>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p>I'm currently available for freelance work or full-time positions.</p>
+        <div class="contact-links">
+            <a href="mailto:Leahajoseph@gmail.com">Email</a>
+            <a href="https://github.com/lea-j-op" target="_blank">GitHub</a>
+            <a href="https://LinkedIn.com/in/leah-joseph" target="_blank">LinkedIn</a>
+            <a href="https://X.com/Leahajoseph" target="_blank">Twitter</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Leah Joseph. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+git add .
+git commit -m "initial commit My-Portfolio"
+git branch -m main
+git remote add origin https://github.com/lea-j-op/My-Portfolio.git
+git push -u origin main
